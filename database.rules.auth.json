@@ -1,0 +1,24 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+
+    "students": {
+      "$sid": {
+        ".read": "auth != null && auth.uid === $sid",
+
+        "profile_completed": {
+          ".write": "auth != null && auth.uid === $sid",
+          ".validate": "newData.isBoolean()"
+        },
+
+        "profile": {
+          ".write": "auth != null && auth.uid === $sid",
+          "$field": {
+            ".validate": "newData.isString() && newData.val().length <= 200"
+          }
+        }
+      }
+    }
+  }
+}

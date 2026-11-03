@@ -1,0 +1,24 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+
+    "students": {
+      "$sid": {
+        ".read": true,
+
+        "profile_completed": {
+          ".write": true,
+          ".validate": "newData.isBoolean()"
+        },
+
+        "profile": {
+          ".write": true,
+          "$field": {
+            ".validate": "newData.isString() && newData.val().length <= 200"
+          }
+        }
+      }
+    }
+  }
+}
